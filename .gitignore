@@ -4,6 +4,9 @@ keys.py
 # ignore lexicon
 NRC-lexicon.txt
 
+# folder for storing pictures
+pics/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

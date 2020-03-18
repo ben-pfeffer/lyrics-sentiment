@@ -2,7 +2,7 @@
 
 # set working directory to current folder
 import os
-os.chdir(os.path.dirname(os.path.abspath('scrape-artists.py')))
+os.chdir(os.path.dirname(os.path.abspath('sentiment-analysis.py')))
 
 import pandas as pd 
 from nltk.stem.snowball import SnowballStemmer
@@ -113,6 +113,14 @@ new_df.rename(columns={'pos pct': 'positive', 'neg pct': 'negative',
                        'joy pct': 'joy', 'sadness pct': 'sadness',
                        'surprise pct': 'surprise', 'trust pct': 'trust'}, 
                  inplace=True)
+
+# add 'Lyrical Diversity' column and rearrange columns
+new_df['Lyrical Diversity'] = new_df['Unique Words']/new_df['Word Count']
+
+new_df = new_df[['Artist','Lyrics','Word Count','Unique Words',
+                 'Lyrical Diversity','positive','negative','anger',
+                 'anticipation','disgust','fear','joy',
+                 'sadness','surprise','trust']]
 
 # write final dataset to CSV for analysis
 new_df.to_csv('sentiment-data-clean.csv', encoding='utf-8')
